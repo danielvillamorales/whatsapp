@@ -1,0 +1,232 @@
+
+@font-face {
+  font-family: montbold;
+  src: url('montbold.otf');
+}
+
+@font-face {
+  font-family: montligth;
+  src: url('montligth.otf');
+}
+
+@font-face {
+  font-family: montitalic;
+  src: url('montitalic.otf');
+}
+
+body {  
+  background-color: #2C3E6C;
+  background-image: url("../img/fondodesktop.jpg") ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  top: 20px;
+  position: relative;
+  height:100vh;
+}
+
+#titulo{
+  position: relative;
+  text-align: center;
+  color:#2C3E6C;
+  vertical-align: middle;
+  top:2%;
+}
+
+#titulo h1{
+  font-family:montbold;
+  font-size: 40px;
+}
+
+#titulo h5{
+  font-family: montligth;
+  font-style: italic;
+  font-size: 20px;
+}
+
+#titulo h3{
+  font-family: montitalic;
+  font-size: 25px;
+}
+
+ul{
+  list-style: none;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  font-family:montligth;
+  font-size: 25px;
+  color: #000000;
+  margin:auto;
+  width: 160px;
+  position:relative;
+  text-align: left;
+  vertical-align:middle;
+  left:-30%;
+}
+ul li{
+  padding: 4px;
+  box-shadow: 5px 2px 10px 0.5px rgb(47, 47, 47);
+}
+
+ul li:nth-child(1){
+  background-color:#fefefe;
+  border-top-right-radius: 25px;
+}
+ul li:nth-child(2){
+  background-color:#efefef;
+}
+
+ul li:nth-child(3){
+  background-color:#f2f2f2;
+}
+
+ul li:nth-child(4){
+  background-color:#f3f4f4;
+}
+
+ul li:nth-child(5){
+  background-color:#f5f5f5;
+}
+ul li:nth-child(6){
+  background-color:#edeae6;
+}
+ul li:nth-child(7){
+  background-color:#f4eadd;
+}
+ul li:nth-child(8){
+  background-color:#efe8e0;
+}
+ul li:nth-child(9){
+  background-color:#f6edeb;
+}
+ul li:nth-child(10){
+  background-color:#ffffff;
+  border-bottom-right-radius: 25px;
+}
+
+#atenciondiv{
+  top: 25px;
+  position:relative;
+  align-content: left;
+  align-items: left;
+  text-align: left;
+  vertical-align: middle;
+}
+#atencion{
+  position: relative;
+  height: 400px;
+  opacity: 0.8;
+  vertical-align: middle;
+  left:10%;
+  background-image: url("../img/atenciondesktop.jpg") ;
+  background-size:contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment:unset;
+}
+
+ul li a , ul li a:visited{
+  text-decoration: none;
+  color: #303030;
+}
+
+ul li:hover{
+  background-color:rgb(145, 146, 155);
+}
+
+/*ul li ul{
+  display:none;
+  position:relative;
+  left:70%;
+  border-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  font-size: 15px;
+  color: #010328;
+  margin:auto;
+  width: auto;
+  text-align: left;
+  right: 10%;
+}
+
+ul li ul li{
+  padding:2px;
+  box-shadow: 1px 2px 5px 0.5px rgb(30, 96, 140);
+}
+
+ul li:hover > ul{
+  display:block;
+  opacity:0.9;
+}*/
+
+@media (min-width: 0px) and (max-width: 600px) {
+  body {  
+    background-color: #2C3E6C;
+    background-image: url("../img/fondomobile.jpg") ;
+    top: 20px;
+    position: relative;
+    height:100vh;
+  }
+  
+  #titulo{
+    position: relative;
+    text-align: center;
+    color:#2C3E6C;
+    vertical-align: middle;
+    left:0;
+    top:10%;
+  }
+
+  #titulo h1{
+    font-family:montbold;
+    font-size: 40px;
+  }
+  
+  #titulo h5{
+    font-family: montligth;
+    font-style: italic;
+    font-size: 20px;
+  }
+  
+  #titulo h3{
+    font-family: montitalic;
+    font-size: 25px;
+  }
+
+  ul{
+    list-style: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    font-family:montligth;
+    font-size: 20px;
+    color: #303030;
+    margin:auto;
+    width: 160px;
+    position:relative;
+    top:10%;
+    left:7%;
+    text-align: left;
+  }
+  ul li{
+    padding: 4px;
+    box-shadow: 5px 2px 10px 0.5px rgb(47, 47, 47);
+  }
+
+  #atenciondiv{
+    align-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  #atencion{
+    position: relative;
+    background-image: url("../img/atencion.png") ;
+    height: 400px;
+    width: 400px;
+    vertical-align: middle;
+    background-size:contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-attachment:unset;
+  }
+}

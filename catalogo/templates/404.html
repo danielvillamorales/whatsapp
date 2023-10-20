@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+
+@font-face {
+    font-family: coolvetica;
+    src: url('coolveticarg.otf'),url('coolveticargit.otf'),url('coolveticacrammedrg.otf'),url('coolveticacondensedrg.otf');
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: coolvetica, sans-serif;
+    background: #f9f8f8;
+  }
+  
+  .glitch {
+    font-size: 8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+    text-align: center;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+
+  animation: glitch 500ms infinite;
+}
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  
+  15% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75), 
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  
+  100% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+  .inspiration-button {
+    font-family: Helvetica, sans-serif;
+    position: fixed;
+    display: inline-block;
+    z-index: 100;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 80px;
+    background: linear-gradient(270deg, #1e80dc, #c61590);
+    transition: transform 1s ease;
+    text-align: center;
+  }
+  .inspiration-button:hover, .inspiration-button:focus, .inspiration-button:active {
+    transform: translate(-50%, -10%);
+  }
+    </style>
+</head>
+<body>
+    <h1 class="glitch">Error 404</h1>
+    <a class="inspiration-button" href="https://whatsapp.kostazul.com" target="_blank">volver a iinicio</a>
+</body>
+</html>

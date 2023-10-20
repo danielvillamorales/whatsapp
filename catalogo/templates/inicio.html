@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+        <!--- CSS --->
+    <!--============ bootstrap =============-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static  'css/estilosAlmacen.css' %}?4">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <title>Catalogo De Fotos Almacenes</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                <div id="titulo">
+                    <h1>Elije Tu Almacen</h1>
+                    <h5>Canal oficial de ventas por</h5>
+                    <h3>Whatsapp<img src="{% static 'img/whatsapp.png' %}"></h3>
+                </div>
+            </div>
+            <div id="divlist">
+                    <ul>
+                        <li>
+                            <a href="{% url 'catalogo' almacen='pereira' %}">
+                                <p>Pereira - Dosquebradas</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'catalogo' almacen='tulua' %}">
+                                
+                                <p>Tulua</p>
+                            </a>   
+                        </li>
+                        <li>
+                            <a href="{% url 'catalogo' almacen='americas' %}">
+                                <p>Plaza Americas (Bogotà)</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'catalogo' almacen='palmira' %}">
+                                <p>Palmira</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'catalogo' almacen='pasto' %}">
+                                <p>Pasto</p>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <div id="divwp">
+            <a id="awp" href="https://wa.me/573104777919?text=Hola!%20quisiera%20asesoría%20en%20mi%20proceso%20de%20compra"
+             target="_blank">
+             <img alt="whatsapp_icon" crossorigin="anonymous" 
+             class="vtex-render-runtime-8-x-lazyload ls-is-cached lazyloaded" data-src="https://kostaazul.vtexassets.com/arquivos/whatsapp.png" 
+             loading="lazy" src="https://kostaazul.vtexassets.com/arquivos/whatsapp.png"></a>
+        </div>
+    </div>
+</body>
+</html>

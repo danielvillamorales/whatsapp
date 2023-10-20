@@ -1,0 +1,113 @@
+
+@font-face {
+  font-family: montbold;
+  src: url('montbold.otf');
+}
+
+@font-face {
+  font-family: montligth;
+  src: url('montligth.otf');
+}
+
+@font-face {
+  font-family: montitalic;
+  src: url('montitalic.otf');
+}
+
+body {  
+  background-color: #2C3E6C;
+  background-image: url("../img/fondodesktop.jpg") ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  top: 20px;
+  position: relative;
+  height:100vh;
+}
+
+#titulo{
+  position: relative;
+  text-align: center;
+  color:#2e4a92;
+  vertical-align: middle;
+  top:2%;
+}
+
+#titulo h1{
+  font-family:montbold;
+  font-size: 40px;
+}
+
+#titulo h5{
+  font-family: montligth;
+  font-style: italic;
+  font-size: 20px;
+}
+
+#titulo h3{
+  font-family: montitalic;
+  font-size: 25px;
+}
+
+#awp{
+  position: fixed;
+  margin: 5%;
+  bottom:0;
+  right: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; /* Elimina el padding predeterminado */
+  border-radius: 20px;
+  opacity: 0.9;
+  font-size: 20px;
+  text-align: center;
+  display: flex; /* Utiliza flexbox para centrar la lista */
+  flex-direction: column; /* Apila los elementos verticalmente */
+  align-items: center;
+}
+
+li {
+  width:15em;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid rgb(2, 0, 99); /* Cambia el orden para evitar errores */
+  margin: 5px 0;
+  background-color: #2e4a92;
+  font-family: montbold;
+  color: white;
+  opacity: 0.9;
+   /* Agrega espacio entre elementos de la lista *//* Agrega espacio interno a los elementos de la lista */
+}
+
+li:hover {
+  background-color: #f9f9f9;
+  color: #2e4a92;
+  opacity: 0.9;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #2e4a92;
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  body {  
+    background-color: #2C3E6C;
+    background-image: url("../img/fondomobile.jpg") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height:100vh;
+  }
+
+}

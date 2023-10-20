@@ -1,0 +1,111 @@
+
+@font-face {
+  font-family: Heycomic;
+  src: url('Hey Comic.otf');
+}
+
+@font-face {
+  font-family: wallnotes;
+  src: url('wallNotes.otf');
+}
+
+@font-face {
+  font-family: coolvetica;
+  src: url('coolveticarg.otf'),url('coolveticargit.otf'),url('coolveticacrammedrg.otf'),url('coolveticacondensedrg.otf');
+}
+body{
+background-color: #2C3E6C;
+color: solid;
+}
+
+
+#divitems{
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  padding: 0.5vh;
+}
+#divinicial{
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+#divimagen{
+  background-color: white;
+  width: 20rem;
+  margin:auto;
+  display:block;
+  align-content: center;
+  align-items: center;
+}
+
+p{
+  line-height:0.8;
+  font-size: 11px;
+}
+#idsilueta{
+  color: #2C3E6C;
+  opacity: 0.8;
+  font-size: 11px;
+  text-align: right;
+  font-family: coolvetica;
+}
+
+#divheader{
+  position:relative;
+  vertical-align:middle;
+}
+#logo{
+  height:60px;
+  width:auto;
+  margin:auto;
+  position:relative;
+  left:2em;
+}
+
+#volver{
+  position:fixed;
+  top:0.5em;
+  right: 1em;
+  height:50px;
+  width:auto;
+  vertical-align:middle;
+  z-index: 1;
+}
+
+
+#volver:hover{
+  height:60px;
+  width:auto;
+  vertical-align:middle;
+}
+
+h5{
+  border: solid 1px;
+  border-color: #2C3E6C;
+  border-radius: 20px;
+  background-color: #2C3E6C;
+  color: white;
+  opacity: 0.9;
+  font-size: 16px;
+  font-family: coolvetica;
+}
+
+.tipebutton {
+  width: 25px; /* Ancho fijo */
+  height: 25px; /* Altura fija */
+  border-radius: 5px;
+  display: inline-block; /* Para que se muestren en línea y no se rompan en nuevas líneas */
+  text-align: center; /* Para centrar el contenido */
+  line-height: 25px; /* Alineación vertical al centro */
+  border: 1px solid #2C3E6C; /* Borde opcional */
+  background-color: rgb(195, 205, 241);
+  margin: 3px; /* Margen opcional entre los botones */
+  font-family: coolvetica;
+}
+
+.card-text {
+  font-family: coolvetica;
+  font-size: 13px;
+}

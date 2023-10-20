@@ -1,0 +1,162 @@
+
+@font-face {
+  font-family: montbold;
+  src: url('montbold.otf');
+}
+
+@font-face {
+  font-family: montligth;
+  src: url('montligth.otf');
+}
+
+@font-face {
+  font-family: montitalic;
+  src: url('montitalic.otf');
+}
+
+body {  
+  background-color: #2C3E6C;
+  background-image: url("../img/fondodesktop.jpg") ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  top: 20px;
+  position: relative;
+  height:100vh;
+}
+
+#titulo{
+  position: relative;
+  text-align: center;
+  color:#2e4a92;
+  vertical-align: middle;
+  top:2%;
+}
+
+#titulo h1{
+  font-family:montbold;
+  font-size: 40px;
+}
+
+#titulo h5{
+  font-family: montligth;
+  font-style: italic;
+  font-size: 20px;
+}
+
+#titulo h3{
+  font-family: montitalic;
+  font-size: 25px;
+}
+
+#divlist{
+  position: relative;
+  top: 10%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.horizontal-list {
+  top:10%;
+  list-style: none;
+  padding: 1%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+li {
+  display: inline-block;
+  align-items: center;
+  margin-right: 1%;
+  margin-top: 2%;
+  justify-content: center;
+  background-color: #a49c9b;
+  font-size: 22px;
+  border-radius: 100%;
+  border-color: #2e4a92;
+  border-width: 2px;
+  border-style: solid;
+  width: 125px;
+  height: 125px;
+  padding: 1%;
+  opacity: 0.85;
+  box-shadow: 0 5px 3px 2px #2b67a0;
+}
+
+li:hover{
+  background-color: #2e4a92;
+  border-color: #d62753;
+  width: 130px;
+  height: 130px;
+  border-width: 3px;
+  color: #cbc9c5;
+  border-style: solid;
+}
+
+li:nth-last-child(1){
+  background-color: #e2073e;
+  color: white;
+}
+
+
+.horizontal-list li a{
+  align-items: center;
+  text-align: center;
+  text-decoration-style: none;
+  text-decoration-line: none;
+  color: white;
+  vertical-align: middle;
+}
+
+
+.horizontal-list li a img{
+  top: 5%;
+  align-items: center;
+}
+
+#awp{
+  position: fixed;
+  margin: 5%;
+  bottom:0;
+  right: 0;
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  body {  
+    background-color: #2C3E6C;
+    background-image: url("../img/fondomobile.jpg") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height:100vh;
+  }
+
+  li {
+    margin-right: 0.5%;
+    margin-top: 5%;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    padding: 1%;
+  }
+
+  li:hover{
+    width: 115px;
+    height: 115px;
+  }
+
+  li a img{
+    top:5%;
+    margin-top: 10%;
+  }
+
+}
