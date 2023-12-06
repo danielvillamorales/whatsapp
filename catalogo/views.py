@@ -25,10 +25,10 @@ mi_diccionario = CustomDict({
 })
 
 def catalogo(request):
-    return render(request,'inicio.html')
+    return render(request,'inicio_navidad.html')
 
 def lista(request, almacen):   
-    return render(request,'base.html' ,{'almacen':almacen})
+    return render(request,'base_navidad.html' ,{'almacen':almacen})
 
 def camisas(request, almacen):
     print(mi_diccionario[almacen])

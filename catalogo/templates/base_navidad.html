@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+        <!--- CSS --->
+    <!--============ bootstrap =============-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static  'css/estilos2navidad.css' %}?4">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <title>Catalogo De Fotos Almacenes</title>
+</head>
+<body>
+    <main class="main-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                    <div id="titulo">
+                        <img src="{% static 'img/logo.png'%}" alt="" style="width: 200px;">
+                        <hr>
+                        <h1>Catálogo</h1>
+                        <h5>Canal oficial de ventas por</h5>
+                        <h3>Whatsapp<img src="{% static 'img/whatsapp.png' %}"></h3>
+                    </div>
+                </div>
+                <div id="divlist">
+                        <ul class="horizontal-list">
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'camisas' almacen=almacen %}">
+                                    <img src="{% static 'img/camisa.png'%}" alt="Camisas">
+                                    <p>Camisas</p>
+                                </a>   
+                            </li>
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'pantalones' almacen=almacen %}">
+                                    <img src="{% static 'img/pantalones.png'%}" alt="Pantalones">
+                                    <p>Pantalones</p>
+                                </a>
+                            </li>
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'jeans' almacen=almacen %}">
+                                    <img src="{% static 'img/jeans.png'%}" alt="Jeans">
+                                    <p>Jeans</p>
+                                </a>
+                            </li class="animate__animated animate__backInDown animate__slower">
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'camisetas' almacen=almacen %}">
+                                    <img src="{% static 'img/camisa-polo.png'%}" alt="Camisetas">
+                                    <p>Camisetas</p>
+                                </a>
+                            </li>
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'bermudas' almacen=almacen %}">
+                                    <img src="{% static 'img/bermudas.png'%}" alt="Bermudas">
+                                    <p>Bermudas</p>
+                                </a>
+                            </li>
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'calzados' almacen=almacen %}">
+                                    <img src="{% static 'img/zapato.png'%}" alt="calzados">
+                                    <p>Calzados</p>
+                                </a>
+                            </li>
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'blazers' almacen=almacen %}">
+                                    <img src="{% static 'img/blazer.png'%}" alt="blazers">
+                                    <p>Blazers</p>
+                                </a>
+                            </li>
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'vestidos' almacen=almacen %}">
+                                    <img src="{% static 'img/VESTIDOS.png'%}" alt="Vestidos">
+                                    <p>Vestidos</p>
+                                </a>
+                            </li>
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'buzos' almacen=almacen %}">
+                                    <img src="{% static 'img/buzo.png'%}" alt="Buzos">
+                                    <p>Buzos</p>
+                                </a>
+                            </li>
+                            {% if almacen == 'pereira'%}
+                            <li class="animate__animated animate__backInDown animate__slower">
+                                <a href="{% url 'otros' almacen=almacen %}">
+                                    <img src="{% static 'img/outlet.png'%}" alt="Outlet">
+                                    <p>Outlet</p>
+                                </a>
+                            </li>
+                            {%endif%}
+                        </ul>
+                </div>
+            </div>
+            <div id="divwp">
+                <a id="awp" href="https://wa.me/573104777919?text=Hola!%20quisiera%20asesoría%20en%20mi%20proceso%20de%20compra"
+                 target="_blank">
+                 <img alt="whatsapp_icon" crossorigin="anonymous" 
+                 class="vtex-render-runtime-8-x-lazyload ls-is-cached lazyloaded" data-src="https://kostaazul.vtexassets.com/arquivos/whatsapp.png" 
+                 loading="lazy" src="https://kostaazul.vtexassets.com/arquivos/whatsapp.png"></a>
+            </div>
+        </div>
+      </main>
+    <div class="snow-floor"></div>
+    
+</body>
+<script>
+    const treeContainer = document.createElement("pre");
+const mainContainer = document.querySelector(".main-container");
+
+const createTree = (size) => {
+  for (let i = 0; i < size; i++) {
+    const spanElement = document.createElement("span");
+    const branch = i === 0 || i === size - 1 ? "*\n" : `${"*".repeat(i * 2)}\n`;
+    spanElement.textContent = branch;
+    treeContainer.appendChild(spanElement);
+  }
+  mainContainer.appendChild(treeContainer);
+};
+
+const getRandomValue = (max, min = 1) => {
+  return Math.floor(Math.random() * max) + min;
+};
+
+const createSnow = (density) => {
+  for (let i = 0; i < density; i++) {
+    const snowFlake = document.createElement("span");
+    const horizontalPosition = `${getRandomValue(100)}%`;
+    const fallDelay = `${getRandomValue(100)}s`;
+    const fallDuration = `${getRandomValue(20, 5)}s`;
+    const flakeSize = `${getRandomValue(9, 1)}px`;
+    const flakeOpacity = Math.random().toFixed(2);
+
+    snowFlake.classList.add("snow");
+    snowFlake.style.opacity = flakeOpacity;
+    snowFlake.style.width = flakeSize;
+    snowFlake.style.height = flakeSize;
+    snowFlake.style.animation = `fall ${fallDuration} ${fallDelay} linear infinite`;
+    snowFlake.style.right = horizontalPosition;
+
+    mainContainer.appendChild(snowFlake);
+  }
+};
+
+createSnow(400);
+</script>
+</html>

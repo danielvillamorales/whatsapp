@@ -1,0 +1,161 @@
+
+@font-face {
+  font-family: montbold;
+  src: url('montbold.otf');
+}
+
+@font-face {
+  font-family: montligth;
+  src: url('montligth.otf');
+}
+
+@font-face {
+  font-family: montitalic;
+  src: url('montitalic.otf');
+}
+
+body {  
+  background-color: #17324f;
+  /*background-image: url("../img/fondodesktop.jpg") ;*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  top: 20px;
+  position: relative;
+  height:100vh;
+}
+
+#titulo{
+  position: relative;
+  text-align: center;
+  color:#d3d3d3;
+  vertical-align: middle;
+  top:2%;
+}
+
+#titulo h1{
+  font-family:montbold;
+  font-size: 40px;
+}
+
+#titulo h5{
+  font-family: montligth;
+  font-style: italic;
+  font-size: 20px;
+}
+
+#titulo h3{
+  font-family: montitalic;
+  font-size: 25px;
+}
+
+#awp{
+  position: fixed;
+  margin: 5%;
+  bottom:0;
+  right: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; /* Elimina el padding predeterminado */
+  border-radius: 20px;
+  opacity: 0.9;
+  font-size: 20px;
+  text-align: center;
+  display: flex; /* Utiliza flexbox para centrar la lista */
+  flex-direction: column; /* Apila los elementos verticalmente */
+  align-items: center;
+}
+
+li {
+  width:15em;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid rgb(212, 196, 248); /* Cambia el orden para evitar errores */
+  margin: 5px 0;
+  background-color: rgb(219, 208, 230);
+  font-family: montbold;
+  color: #17324f;
+  opacity: 0.9;
+   /* Agrega espacio entre elementos de la lista *//* Agrega espacio interno a los elementos de la lista */
+}
+
+li:hover {
+  background-color: rgb(181, 162, 232);
+  color: rgb(219, 208, 230);
+  opacity: 0.9;
+}
+
+a{
+  text-decoration: none;
+  color: #17324f;
+}
+
+a:hover{
+  text-decoration: none;
+  color: rgb(219, 208, 230);
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  body {  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height:100vh;
+  }
+
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+
+pre span:first-child {
+  color: rgb(255, 255, 0);
+}
+
+pre span:last-child {
+  color: #795548;
+}
+
+.snow {
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: -100px;
+}
+
+.snow-floor {
+  width: 100%;
+  height: 5%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  border-radius: 50% 50% 0 0;
+}
+
+.title {
+  color: #fff;
+  font-family: "Lobster";
+  font-weight: lighter;
+}
+
+@keyframes fall {
+  0% {
+    top: -100px;
+  }
+
+  100% {
+    top: 100vh;
+  }
+}
