@@ -241,11 +241,11 @@ def buzos(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
         referencias = WpDisponibles.objects.filter(
-            subgrupo="6001", bodega=mi_diccionario[almacen], color=color
+            subgrupo="6003", bodega=mi_diccionario[almacen], color=color
         )
     else:
         referencias = WpDisponibles.objects.filter(
-            subgrupo="6001", bodega=mi_diccionario[almacen]
+            subgrupo="6003", bodega=mi_diccionario[almacen]
         )
     for referencia in referencias:
         referencia.tallas_format = (
