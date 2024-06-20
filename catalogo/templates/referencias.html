@@ -19,16 +19,28 @@
 <body>
     <div class="container-fluid" id="divinicial">
         <div class="row">
-            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 container-fluid" id="divheader">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 p-2 fixed-top" id="divheader" style="background-color: #2C3E6C">
                 <div class="row">
-                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6 col-6">
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4 col-4">
                         <img src="{% static 'img/logo.png' %}" id="logo" alt="logo ka">
                     </div>
-                    <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-6 col-sm-6 col-xs-6 col-6" >
-                        <a href="{% url 'menu'%}"><img src="{% static 'img/volver.png' %}" id="volver" alt="logo ka"></a>
+                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-6 col-xs-6 col-6" style="background-color: #2C3E6C">
+                        <form method="post">
+                            {% csrf_token %}
+                            <select class="form-select" aria-label="Default select example" id="color" name="color">
+                                <option selected value="0">Color...</option>
+                                {% for color in colores %}
+                                <option value="{{color.color}}">{{color.color}}</option>
+                                {% endfor %}
+                              </select>
+                        </form>
+                    </div>
+                    <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-2 col-xs-2 col-2" >
+                        <a href="{% url 'menu'%}"><img src="{% static 'img/volver.png' %}"  id="volver" alt="logo ka"></a>
                     </div>
                 </div>
             </div>
+            <div class="col-12 mt-4 mb-4"></div>
         {% for r in referencias %}
             <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12" id="divitems">
                 <div class="card" id="divimagen">
@@ -42,7 +54,7 @@
                         {% else %}
                         <p class="card-text">Precio:${{r.tiquete}} </p>
                         {% endif %}
-                        <p class="card-text">{{r.desc_referencia}}</p>
+                        <p class="card-text">{{r.desc_referencia}} {{r.color| lower | capfirst | default:"" }}</p>
                         <p class="card-text">Coleccion: {{r.coleccion}}</p>
                         <p class="card-text">{% for t in r.tallas_format %}
                             <span class="tipebutton">{{t}}</span>
@@ -56,4 +68,10 @@
         </div>
     </div>
 </body>
+<script>
+    document.getElementById('color').addEventListener('change', function() {
+        console.log('change');
+        this.form.submit();
+    });
+</script>
 </html>
