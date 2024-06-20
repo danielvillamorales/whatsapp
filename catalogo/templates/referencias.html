@@ -28,7 +28,8 @@
                         <form method="post">
                             {% csrf_token %}
                             <select class="form-select" aria-label="Default select example" id="color" name="color">
-                                <option selected value="0">Color...</option>
+                                <option selected >Color...</option>
+                                <option value="0">......Todos.....</option>
                                 {% for color in colores %}
                                 <option value="{{color.color}}">{{color.color}}</option>
                                 {% endfor %}

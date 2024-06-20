@@ -40,9 +40,14 @@ def lista(request, almacen):
 def camisas(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="01", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                grupo="01", bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo="01", bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             grupo="01", bodega=mi_diccionario[almacen]
@@ -60,9 +65,14 @@ def camisas(request, almacen):
 def pantalones(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="02", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                grupo="02", bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo="02", bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             grupo="02", bodega=mi_diccionario[almacen]
@@ -80,9 +90,14 @@ def pantalones(request, almacen):
 def jeans(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="03", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                grupo="35", bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo="35", bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             grupo="35", bodega=mi_diccionario[almacen]
@@ -100,9 +115,18 @@ def jeans(request, almacen):
 def camisetas(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="60", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                grupo__in=["03", "60", "30"],
+                bodega=mi_diccionario[almacen],
+                color=color,
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo__in=["03", "60", "30"],
+                bodega=mi_diccionario[almacen],
+                color=color,
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             grupo__in=["03", "60", "30"], bodega=mi_diccionario[almacen]
@@ -120,9 +144,14 @@ def camisetas(request, almacen):
 def bermudas(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="04", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                grupo="04", bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo="04", bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             grupo="04", bodega=mi_diccionario[almacen]
@@ -140,9 +169,16 @@ def bermudas(request, almacen):
 def calzados(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="05", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                grupo__in=["10", "1A", "1L", "70"], bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo__in=["10", "1A", "1L", "70"],
+                bodega=mi_diccionario[almacen],
+                color=color,
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             grupo__in=["10", "1A", "1L", "70"], bodega=mi_diccionario[almacen]
@@ -160,9 +196,14 @@ def calzados(request, almacen):
 def blazers(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="06", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                grupo__in=["21", "18"], bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo__in=["21", "18"], bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             grupo__in=["21", "18"], bodega=mi_diccionario[almacen]
@@ -180,9 +221,14 @@ def blazers(request, almacen):
 def vestidos(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="07", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                grupo="22", bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo="22", bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             grupo="22", bodega=mi_diccionario[almacen]
@@ -200,9 +246,14 @@ def vestidos(request, almacen):
 def otros(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            grupo="08", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                Q(grupo="CRR"), bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                grupo="CRR", bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             Q(grupo="CRR"), bodega=mi_diccionario[almacen]
@@ -220,9 +271,14 @@ def otros(request, almacen):
 def cubaveras(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            subgrupo="0118", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                subgrupo="0118", bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                subgrupo="0118", bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             subgrupo="0118", bodega=mi_diccionario[almacen]
@@ -240,9 +296,14 @@ def cubaveras(request, almacen):
 def buzos(request, almacen):
     if request.method == "POST":
         color = request.POST.get("color")
-        referencias = WpDisponibles.objects.filter(
-            subgrupo="6003", bodega=mi_diccionario[almacen], color=color
-        )
+        if color == "0":
+            referencias = WpDisponibles.objects.filter(
+                subgrupo="6003", bodega=mi_diccionario[almacen]
+            )
+        else:
+            referencias = WpDisponibles.objects.filter(
+                subgrupo="6003", bodega=mi_diccionario[almacen], color=color
+            )
     else:
         referencias = WpDisponibles.objects.filter(
             subgrupo="6003", bodega=mi_diccionario[almacen]
