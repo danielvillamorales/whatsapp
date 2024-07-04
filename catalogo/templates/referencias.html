@@ -46,16 +46,16 @@
             <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12" id="divitems">
                 <div class="card" id="divimagen">
                     <img src="{% static r.ruta %}" class="card-img-top" alt="...">
-                    {% if r.observacion == 'NO APLICA PROMOCIÓN'%}
-                    <span class="bg-info" style="position: absolute;
+                    {% if r.observacion %}
+                    <span style="position: absolute;
                     top: 10px; 
                     left: 10px; 
                     color: white;
-                    background-color: rgba(0, 123, 255, 0.5); 
-                    padding: 5px;
+                    background-color: rgba(9, 79, 154, 0.361); 
+                    padding: 3px;
                     margin-bottom: 15px;
                     border-radius: 20px;
-                    opacity: 0.8;
+                    opacity: 0.6;
                     ">{{r.observacion}}</span>
                     {% endif %}
                     <div class="card-body">
