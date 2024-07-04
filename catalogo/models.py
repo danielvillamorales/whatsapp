@@ -55,6 +55,7 @@ class WpDisponibles(models.Model):
     coleccion = models.CharField(max_length=150, blank=True, null=True)
     ruta = models.CharField(max_length=1000, blank=True, null=True)
     color = models.CharField(max_length=500, blank=True, null=True)
+    observacion = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False  # Created from a view. Don't remove.

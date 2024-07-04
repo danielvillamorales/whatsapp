@@ -46,6 +46,18 @@
             <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12" id="divitems">
                 <div class="card" id="divimagen">
                     <img src="{% static r.ruta %}" class="card-img-top" alt="...">
+                    {% if r.observacion == 'NO APLICA PROMOCIÓN'%}
+                    <span class="bg-info" style="position: absolute;
+                    top: 10px; 
+                    left: 10px; 
+                    color: white;
+                    background-color: rgba(0, 123, 255, 0.5); 
+                    padding: 5px;
+                    margin-bottom: 15px;
+                    border-radius: 20px;
+                    opacity: 0.8;
+                    ">{{r.observacion}}</span>
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title text-center">{{r.referenciaunica}}</h5>
                         <p id="idsilueta">{{r.silueta}}</p>
