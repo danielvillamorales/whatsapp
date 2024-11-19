@@ -30,11 +30,19 @@ mi_diccionario = CustomDict(
 
 
 def catalogo(request):
-    return render(request, "inicio.html")
+    html_a_mostrar = (
+        "inicio_navidad.html"
+        if datetime.datetime.now().month >= 11
+        else "inicio_navidad.html"
+    )
+    return render(request, html_a_mostrar)
 
 
 def lista(request, almacen):
-    return render(request, "base.html", {"almacen": almacen})
+    html_a_mostrar = (
+        "base_navidad.html" if datetime.datetime.now().month >= 11 else "base.html"
+    )
+    return render(request, html_a_mostrar, {"almacen": almacen})
 
 
 def camisas(request, almacen):
