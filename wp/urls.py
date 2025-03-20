@@ -13,22 +13,79 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
-from catalogo.views import catalogo,camisas,pantalones,jeans,camisetas,bermudas,calzados,blazers,vestidos,otros,cubaveras,buzos,lista
+from catalogo.views import catalogo, lista, referencias_genericas
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', catalogo, name="menu"),
-    path('catalogo/<str:almacen>', lista, name="catalogo"),
-    path('catalogo/<str:almacen>/camisas/', camisas, name="camisas"),
-     path('catalogo/<str:almacen>/cubaveras/', cubaveras, name="cubaveras"),
-    path('catalogo/<str:almacen>/pantalones/', pantalones, name="pantalones"),
-    path('catalogo/<str:almacen>/jeans/', jeans, name="jeans"),
-    path('catalogo/<str:almacen>/camisetas/', camisetas, name="camisetas"),
-    path('catalogo/<str:almacen>/bermudas/', bermudas, name="bermudas"),
-    path('catalogo/<str:almacen>/calzados/', calzados, name="calzados"),
-    path('catalogo/<str:almacen>/blazers/', blazers, name="blazers"),
-    path('catalogo/<str:almacen>/vestidos/', vestidos, name="vestidos"),
-    path('catalogo/<str:almacen>/otros/', otros, name="otros"),
-    path('catalogo/<str:almacen>/buzos/', buzos, name="buzos"),
+    path("admin/", admin.site.urls),
+    path("", catalogo, name="menu"),
+    path("catalogo/<str:almacen>", lista, name="catalogo"),
+    path(
+        "catalogo/<str:almacen>/camisas/",
+        referencias_genericas,
+        {"grupo": "01"},
+        name="camisas",
+    ),
+    path(
+        "catalogo/<str:almacen>/cubaveras/",
+        referencias_genericas,
+        {"subgrupo": "0118"},
+        name="cubaveras",
+    ),
+    path(
+        "catalogo/<str:almacen>/pantalones/",
+        referencias_genericas,
+        {"grupo": "02"},
+        name="pantalones",
+    ),
+    path(
+        "catalogo/<str:almacen>/jeans/",
+        referencias_genericas,
+        {"grupo": "35"},
+        name="jeans",
+    ),
+    path(
+        "catalogo/<str:almacen>/camisetas/",
+        referencias_genericas,
+        {"grupo": ["03", "60", "30"]},
+        name="camisetas",
+    ),
+    path(
+        "catalogo/<str:almacen>/bermudas/",
+        referencias_genericas,
+        {"grupo": "04"},
+        name="bermudas",
+    ),
+    path(
+        "catalogo/<str:almacen>/calzados/",
+        referencias_genericas,
+        {"grupo": ["10", "1A", "1L", "70"]},
+        name="calzados",
+    ),
+    path(
+        "catalogo/<str:almacen>/blazers/",
+        referencias_genericas,
+        {"grupo": ["21", "18"]},
+        name="blazers",
+    ),
+    path(
+        "catalogo/<str:almacen>/vestidos/",
+        referencias_genericas,
+        {"grupo": "22"},
+        name="vestidos",
+    ),
+    path(
+        "catalogo/<str:almacen>/otros/",
+        referencias_genericas,
+        {"grupo": "CRR"},
+        name="otros",
+    ),
+    path(
+        "catalogo/<str:almacen>/buzos/",
+        referencias_genericas,
+        {"subgrupo": "6003"},
+        name="buzos",
+    ),
 ]

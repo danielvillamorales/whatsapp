@@ -1,90 +1,139 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--- CSS --->
+    <!--- CSS --->
     <!--============ bootstrap =============-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static  'css/estilos.css' %}?4">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css' rel='stylesheet'
+        type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
     <title>Catalogo De Fotos Almacenes</title>
 </head>
+
 <body>
     <div class="container-fluid" id="divinicial">
         <div class="row">
-            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 p-2 fixed-top" id="divheader" style="background-color: #2C3E6C">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 p-2 fixed-top"
+                id="divheader" style="background-color: #2C3E6C">
                 <div class="row">
                     <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4 col-4">
                         <img src="{% static 'img/logo.png' %}" id="logo" alt="logo ka">
                     </div>
-                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-6 col-xs-6 col-6" style="background-color: #2C3E6C">
+                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-6 col-xs-6 col-6"
+                        style="background-color: #2C3E6C">
                         <form method="post">
                             {% csrf_token %}
                             <select class="form-select" aria-label="Default select example" id="color" name="color">
-                                <option selected >Color...</option>
+                                <option selected>Color...</option>
                                 <option value="0">......Todos.....</option>
                                 {% for color in colores %}
                                 <option value="{{color.color}}">{{color.color}}</option>
                                 {% endfor %}
-                              </select>
+                            </select>
                         </form>
                     </div>
-                    <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-2 col-xs-2 col-2" >
-                        <a href="{% url 'menu'%}"><img src="{% static 'img/volver.png' %}"  id="volver" alt="logo ka"></a>
+                    <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-2 col-xs-2 col-2">
+                        <a href="{% url 'menu' %}"><img src="{% static 'img/volver.png' %}" id="volver"
+                                alt="logo ka"></a>
                     </div>
                 </div>
             </div>
             <div class="col-12 mt-4 mb-4"></div>
-        {% for r in referencias %}
-            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12" id="divitems">
-                <div class="card" id="divimagen">
-                    <img src="{% static r.ruta %}" class="card-img-top" alt="...">
-                    {% if r.observacion %}
-                    <span style="position: absolute;
-                    top: 10px; 
-                    left: 10px; 
-                    color: white;
-                    background-color: rgba(9, 79, 154, 0.361); 
-                    padding: 3px;
-                    margin-bottom: 15px;
-                    border-radius: 20px;
-                    opacity: 0.6;
-                    ">{{r.observacion}}</span>
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title text-center">{{r.referenciaunica}}</h5>
-                        <p id="idsilueta">{{r.silueta}}</p>
-                        <p class="card-text">{{r.composicion}}</p>
-                        {%if r.grupo == 'CRR' %}
-                        <p class="card-text" style="color:red">Precios sujetos a promoción (validar precio con asesora)</p>
-                        {% else %}
-                        <p class="card-text">Precio:${{r.tiquete}} </p>
+
+            <!-- Contenedor para las referencias -->
+            <div id="referencias-container" class="row">
+                {% for r in referencias %}
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12" id="divitems">
+                    <div class="card" id="divimagen">
+                        <img src="{% static r.ruta %}" class="card-img-top" alt="...">
+                        {% if r.observacion %}
+                        <span
+                            style="position: absolute; top: 10px; left: 10px; color: white; background-color: rgba(9, 79, 154, 0.361); padding: 3px; margin-bottom: 15px; border-radius: 20px; opacity: 0.6;">
+                            {{r.observacion}}
+                        </span>
                         {% endif %}
-                        <p class="card-text">{{r.desc_referencia}} {{r.color| lower | capfirst | default:"" }}</p>
-                        <p class="card-text">Coleccion: {{r.coleccion}}</p>
-                        <p class="card-text">{% for t in r.tallas_format %}
-                            <span class="tipebutton">{{t}}</span>
-                            {% endfor %}    
-                        </p> 
-                       <!-- <a href="#" class="btn btn-primary">Mas Info</a>-->
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{r.referenciaunica}}</h5>
+                            <p id="idsilueta">{{r.silueta}}</p>
+                            <p class="card-text">{{r.composicion}}</p>
+                            {% if r.grupo == 'CRR' %}
+                            <p class="card-text" style="color:red">Precios sujetos a promoción (validar precio con
+                                asesora)</p>
+                            {% else %}
+                            <p class="card-text">Precio: ${{r.tiquete}}</p>
+                            {% endif %}
+                            <p class="card-text">{{r.desc_referencia}} {{r.color|lower|capfirst|default:""}}</p>
+                            <p class="card-text">Colección: {{r.coleccion}}</p>
+                            <p class="card-text">
+                                {% for t in r.tallas_format %}
+                                <span class="tipebutton">{{t}}</span>
+                                {% endfor %}
+                            </p>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-        {%endfor%}
+
+            <!-- Indicador de carga -->
+            <div id="loading" style="display: none; text-align: center; margin: 20px;">
+                <h6 class="text-primary">Cargando más referencias...</h6>
+            </div>
         </div>
     </div>
 </body>
+
+<!-- JavaScript para manejar el scroll infinito -->
 <script>
-    document.getElementById('color').addEventListener('change', function() {
-        console.log('change');
+    let page = 2; // Comenzar desde la segunda página
+    let loading = false;
+
+    window.addEventListener("scroll", () => {
+        if (loading) return;
+
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.body.scrollHeight;
+
+        if (scrollTop + windowHeight >= documentHeight - 100) {
+            loading = true;
+            document.getElementById("loading").style.display = "block";
+
+            fetch(`?page=${page}`, {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                },
+            })
+                .then((response) => response.text())
+                .then((html) => {
+                    const container = document.getElementById("referencias-container");
+                    container.insertAdjacentHTML("beforeend", html);
+                    document.getElementById("loading").style.display = "none";
+                    page++;
+                    loading = false;
+                })
+                .catch((error) => {
+                    console.error("Error al cargar más datos:", error);
+                    document.getElementById("loading").style.display = "none";
+                    loading = false;
+                });
+        }
+    });
+
+    // Enviar el formulario al cambiar el color
+    document.getElementById('color').addEventListener('change', function () {
         this.form.submit();
     });
 </script>
+
 </html>

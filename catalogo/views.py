@@ -31,9 +31,7 @@ mi_diccionario = CustomDict(
 
 def catalogo(request):
     html_a_mostrar = (
-        "inicio_navidad.html"
-        if datetime.datetime.now().month >= 11
-        else "inicio_navidad.html"
+        "inicio_navidad.html" if datetime.datetime.now().month >= 11 else "inicio.html"
     )
     return render(request, html_a_mostrar)
 
@@ -45,282 +43,67 @@ def lista(request, almacen):
     return render(request, html_a_mostrar, {"almacen": almacen})
 
 
-def camisas(request, almacen):
+def referencias_genericas(request, almacen, grupo=None, subgrupo=None):
+    """
+    Vista genérica para manejar referencias según grupo o subgrupo.
+    """
     if request.method == "POST":
         color = request.POST.get("color")
         if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                grupo="01", bodega=mi_diccionario[almacen]
-            )
+            if grupo:
+                referencias = WpDisponibles.objects.filter(
+                    grupo__in=grupo if isinstance(grupo, list) else [grupo],
+                    bodega=mi_diccionario[almacen],
+                )
+            elif subgrupo:
+                referencias = WpDisponibles.objects.filter(
+                    subgrupo=subgrupo, bodega=mi_diccionario[almacen]
+                )
         else:
-            referencias = WpDisponibles.objects.filter(
-                grupo="01", bodega=mi_diccionario[almacen], color=color
-            )
+            if grupo:
+                referencias = WpDisponibles.objects.filter(
+                    grupo__in=grupo if isinstance(grupo, list) else [grupo],
+                    bodega=mi_diccionario[almacen],
+                    color=color,
+                )
+            elif subgrupo:
+                referencias = WpDisponibles.objects.filter(
+                    subgrupo=subgrupo, bodega=mi_diccionario[almacen], color=color
+                )
     else:
-        referencias = WpDisponibles.objects.filter(
-            grupo="01", bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def pantalones(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
+        if grupo:
             referencias = WpDisponibles.objects.filter(
-                grupo="02", bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                grupo="02", bodega=mi_diccionario[almacen], color=color
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            grupo="02", bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def jeans(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                grupo="35", bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                grupo="35", bodega=mi_diccionario[almacen], color=color
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            grupo="35", bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def camisetas(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                grupo__in=["03", "60", "30"],
+                grupo__in=grupo if isinstance(grupo, list) else [grupo],
                 bodega=mi_diccionario[almacen],
-                color=color,
             )
-        else:
+        elif subgrupo:
             referencias = WpDisponibles.objects.filter(
-                grupo__in=["03", "60", "30"],
-                bodega=mi_diccionario[almacen],
-                color=color,
+                subgrupo=subgrupo, bodega=mi_diccionario[almacen]
             )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            grupo__in=["03", "60", "30"], bodega=mi_diccionario[almacen]
-        )
+
     for referencia in referencias:
         referencia.tallas_format = (
             referencia.tallas.split("-") if referencia.tallas else ""
         )
+
+    # Colores disponibles
     colores = WpDisponibles.objects.all().values("color").distinct()
+    # Paginación
+    page = request.GET.get("page", 1)  # Obtener el número de página desde la URL
+    paginator = Paginator(referencias, 16)  # Mostrar 16 elementos por página
+    referencias_paginadas = paginator.get_page(page)
+
+    # Si es una solicitud AJAX, devolver solo los datos paginados
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return render(
+            request,
+            "partials/referencias_list.html",  # Un archivo parcial para los datos
+            {"referencias": referencias_paginadas},
+        )
+
+    # Si no es AJAX, devolver la página completa
     return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def bermudas(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                grupo="04", bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                grupo="04", bodega=mi_diccionario[almacen], color=color
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            grupo="04", bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def calzados(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                grupo__in=["10", "1A", "1L", "70"], bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                grupo__in=["10", "1A", "1L", "70"],
-                bodega=mi_diccionario[almacen],
-                color=color,
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            grupo__in=["10", "1A", "1L", "70"], bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def blazers(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                grupo__in=["21", "18"], bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                grupo__in=["21", "18"], bodega=mi_diccionario[almacen], color=color
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            grupo__in=["21", "18"], bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def vestidos(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                grupo="22", bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                grupo="22", bodega=mi_diccionario[almacen], color=color
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            grupo="22", bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def otros(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                Q(grupo="CRR"), bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                grupo="CRR", bodega=mi_diccionario[almacen], color=color
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            Q(grupo="CRR"), bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def cubaveras(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                subgrupo="0118", bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                subgrupo="0118", bodega=mi_diccionario[almacen], color=color
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            subgrupo="0118", bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
-    )
-
-
-def buzos(request, almacen):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            referencias = WpDisponibles.objects.filter(
-                subgrupo="6003", bodega=mi_diccionario[almacen]
-            )
-        else:
-            referencias = WpDisponibles.objects.filter(
-                subgrupo="6003", bodega=mi_diccionario[almacen], color=color
-            )
-    else:
-        referencias = WpDisponibles.objects.filter(
-            subgrupo="6003", bodega=mi_diccionario[almacen]
-        )
-    for referencia in referencias:
-        referencia.tallas_format = (
-            referencia.tallas.split("-") if referencia.tallas else ""
-        )
-    colores = WpDisponibles.objects.all().values("color").distinct()
-    return render(
-        request, "referencias.html", {"referencias": referencias, "colores": colores}
+        request,
+        "referencias.html",
+        {"referencias": referencias_paginadas, "colores": colores},
     )

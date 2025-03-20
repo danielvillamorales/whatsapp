@@ -1,0 +1,31 @@
+{% load static %}
+{% for r in referencias %}
+<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12" id="divitems">
+    <div class="card" id="divimagen">
+        <img src="{% static r.ruta %}" class="card-img-top" alt="...">
+        {% if r.observacion %}
+        <span
+            style="position: absolute; top: 10px; left: 10px; color: white; background-color: rgba(9, 79, 154, 0.361); padding: 3px; margin-bottom: 15px; border-radius: 20px; opacity: 0.6;">
+            {{r.observacion}}
+        </span>
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title text-center">{{r.referenciaunica}}</h5>
+            <p id="idsilueta">{{r.silueta}}</p>
+            <p class="card-text">{{r.composicion}}</p>
+            {% if r.grupo == 'CRR' %}
+            <p class="card-text" style="color:red">Precios sujetos a promoción (validar precio con asesora)</p>
+            {% else %}
+            <p class="card-text">Precio: ${{r.tiquete}}</p>
+            {% endif %}
+            <p class="card-text">{{r.desc_referencia}} {{r.color|lower|capfirst|default:""}}</p>
+            <p class="card-text">Colección: {{r.coleccion}}</p>
+            <p class="card-text">
+                {% for t in r.tallas_format %}
+                <span class="tipebutton">{{t}}</span>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endfor %}
