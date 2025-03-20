@@ -93,13 +93,13 @@
     </div>
 </body>
 
-<!-- JavaScript para manejar el scroll infinito -->
 <script>
     let page = 2; // Comenzar desde la segunda página
     let loading = false;
+    let hasMorePages = true; // Bandera para controlar si hay más páginas
 
     window.addEventListener("scroll", () => {
-        if (loading) return;
+        if (loading || !hasMorePages) return; // No hacer nada si ya está cargando o no hay más páginas
 
         const scrollTop = window.scrollY;
         const windowHeight = window.innerHeight;
@@ -116,10 +116,16 @@
             })
                 .then((response) => response.text())
                 .then((html) => {
-                    const container = document.getElementById("referencias-container");
-                    container.insertAdjacentHTML("beforeend", html);
+                    if (html.trim() === "") {
+                        // Si la respuesta está vacía, no hay más páginas
+                        hasMorePages = false;
+                        document.getElementById("loading").innerHTML = "<h6 class='text-secondary'>No hay más referencias.</h6>";
+                    } else {
+                        const container = document.getElementById("referencias-container");
+                        container.insertAdjacentHTML("beforeend", html);
+                        page++; // Incrementar el número de página
+                    }
                     document.getElementById("loading").style.display = "none";
-                    page++;
                     loading = false;
                 })
                 .catch((error) => {
