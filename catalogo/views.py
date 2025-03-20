@@ -92,6 +92,7 @@ def referencias_genericas(request, almacen, grupo=None, subgrupo=None):
     page = request.GET.get("page", 1)  # Obtener el número de página desde la URL
     paginator = Paginator(referencias, 16)  # Mostrar 16 elementos por página
     referencias_paginadas = paginator.get_page(page)
+    print(referencias_paginadas)
 
     # Si es una solicitud AJAX, devolver solo los datos paginados
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
@@ -105,5 +106,9 @@ def referencias_genericas(request, almacen, grupo=None, subgrupo=None):
     return render(
         request,
         "referencias.html",
-        {"referencias": referencias_paginadas, "colores": colores},
+        {
+            "referencias": referencias_paginadas,
+            "colores": colores,
+            "paginas": paginator,
+        },
     )
