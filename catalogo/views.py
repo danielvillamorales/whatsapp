@@ -47,52 +47,41 @@ def referencias_genericas(request, almacen, grupo=None, subgrupo=None):
     """
     Vista genérica para manejar referencias según grupo o subgrupo.
     """
-    if request.method == "POST":
-        color = request.POST.get("color")
-        if color == "0":
-            if grupo:
-                referencias = WpDisponibles.objects.filter(
-                    grupo__in=grupo if isinstance(grupo, list) else [grupo],
-                    bodega=mi_diccionario[almacen],
-                )
-            elif subgrupo:
-                referencias = WpDisponibles.objects.filter(
-                    subgrupo=subgrupo, bodega=mi_diccionario[almacen]
-                )
-        else:
-            if grupo:
-                referencias = WpDisponibles.objects.filter(
-                    grupo__in=grupo if isinstance(grupo, list) else [grupo],
-                    bodega=mi_diccionario[almacen],
-                    color=color,
-                )
-            elif subgrupo:
-                referencias = WpDisponibles.objects.filter(
-                    subgrupo=subgrupo, bodega=mi_diccionario[almacen], color=color
-                )
-    else:
-        if grupo:
-            referencias = WpDisponibles.objects.filter(
-                grupo__in=grupo if isinstance(grupo, list) else [grupo],
-                bodega=mi_diccionario[almacen],
-            )
-        elif subgrupo:
-            referencias = WpDisponibles.objects.filter(
-                subgrupo=subgrupo, bodega=mi_diccionario[almacen]
-            )
+    # Construir filtros dinámicamente
+    filtros = {"bodega": mi_diccionario[almacen]}
+    if grupo:
+        filtros["grupo__in"] = grupo if isinstance(grupo, list) else [grupo]
+    if subgrupo:
+        filtros["subgrupo__in"] = subgrupo if isinstance(subgrupo, list) else [subgrupo]
 
+    # Manejar el color
+    color = request.POST.get("color") or request.GET.get("color")
+    if color and color != "0":
+        filtros["color"] = color
+
+    # Consultar referencias
+    referencias = WpDisponibles.objects.filter(**filtros)
+
+    # Formatear tallas
     for referencia in referencias:
         referencia.tallas_format = (
             referencia.tallas.split("-") if referencia.tallas else ""
         )
 
     # Colores disponibles
-    colores = WpDisponibles.objects.all().values("color").distinct()
+    colores = (
+        WpDisponibles.objects.filter(
+            bodega=mi_diccionario[almacen],
+            grupo__in=grupo if isinstance(grupo, list) else [grupo],
+        )
+        .values("color")
+        .distinct()
+    )
+
     # Paginación
     page = request.GET.get("page", 1)  # Obtener el número de página desde la URL
     paginator = Paginator(referencias, 16)  # Mostrar 16 elementos por página
     referencias_paginadas = paginator.get_page(page)
-    print(referencias_paginadas)
 
     # Si es una solicitud AJAX, devolver solo los datos paginados
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
@@ -109,6 +98,7 @@ def referencias_genericas(request, almacen, grupo=None, subgrupo=None):
         {
             "referencias": referencias_paginadas,
             "colores": colores,
-            "paginas": paginator,
+            "paginas": paginator,  # Total de páginas
+            "color_actual": color,  # Color seleccionado
         },
     )
